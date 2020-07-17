@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "dude_left",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.8,
+  "sample": 5,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "c2ca9563-d586-4d10-a848-816ad11eccf3"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "b8a7a827-91bd-44f9-94ba-5f0c2db7c7b9"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "1b9ca071-18c5-4ff6-9b22-2e471b394b30"
+            }
+          },
+          {
+            "frame": 0.6,
+            "value": {
+              "__uuid__": "ab702faf-1a68-4957-aca3-79109d7b10d6"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
