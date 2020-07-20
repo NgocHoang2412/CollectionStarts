@@ -1,3 +1,4 @@
+var GLOBAL = require("GLOBAL");
 
 cc.Class({
     extends: cc.Component,
@@ -7,6 +8,7 @@ cc.Class({
         jumpHeight : 0,
         maxJumpDuration : 0,
         score : 0,
+        starCount : 0,
         body : cc.RigidBody,
         audio: {
             default: null,
@@ -42,8 +44,10 @@ cc.Class({
         //console.log("Currently colliding");
         other.node.destroy();
         this.score += 10;
+        this.starCount++;
+        GLOBAL.TotalScore += 10;
         cc.audioEngine.play(this.audio, false, 1);
-        //console.log("Currently score ===  " + this.score);
+        
     },
 
     onDestroy () {
@@ -91,26 +95,35 @@ cc.Class({
     
     update (dt) {
 
-        if (this.isMovingLeft) {
-            this.node.x -= this.moveSpeed * dt;
-        }
-        else if (this.isMovingRight) {
-            this.node.x += this.moveSpeed * dt;
-        }
-        var speed = this.body.linearVelocity;
-        if (this.isJumping) {
-            this.jumpDuration += dt; 
-            if(this.jumpDuration < this.maxJumpDuration){
-                speed.y = this.jumpHeight;
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa == " + GLOBAL.GameStatus);
+        if(GLOBAL.GameStatus == 0) {
+            
+            if (this.isMovingLeft) {
+                this.node.x -= this.moveSpeed * dt;
             }
-            else {
-                this.isJumping = false;
+            else if (this.isMovingRight) {
+                this.node.x += this.moveSpeed * dt;
             }
+            var speed = this.body.linearVelocity;
+            if (this.isJumping) {
+                this.jumpDuration += dt; 
+                if(this.jumpDuration < this.maxJumpDuration){
+                    speed.y = this.jumpHeight;
+                }
+                else {
+                    this.isJumping = false;
+                }
+            }
+            else
+            {
+                speed.y = -this.jumpHeight;
+            }
+            this.body.linearVelocity = speed;
         }
         else
         {
-            speed.y = -this.jumpHeight;
+            console.log("bbbbbbbbbbbbbbbbbbbbbbbbbb");
         }
-        this.body.linearVelocity = speed;
+        
     }
 });
