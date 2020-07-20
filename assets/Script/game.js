@@ -37,11 +37,11 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        
     },
 
     // use this for initialization
     onLoad: function () {
+        this.TOTAL_LEVEL = 3;
         this.timer = GLOBAL.Timer;
         this.level = GLOBAL.Level;
         this.label.string =  " Score : " + this.player.getComponent('player').score;
@@ -49,10 +49,28 @@ cc.Class({
         this.levelLabel.string =  " Level " + this.level;
         this.gameOverNode.active  = false;
         this.gameWinNode.active  = false;
+        this.loadLevel();
+        
+    },
 
-        var starNode = this.node.getChildByName("star");
-        this.starCount =  starNode.children.length;
-        console.log("count_star ==== " + this.starCount);
+    loadLevel : function () {
+        var groundNode = null;
+        var starNode = null;
+        for(var i=1; i<=this.TOTAL_LEVEL;i++){
+            groundNode = this.node.getChildByName("ground_level_" + i);
+            starNode = this.node.getChildByName("star_level_" + i);
+            if(this.level == i){
+                groundNode.active = true;
+                starNode.active = true;
+                this.starCount =  starNode.children.length;
+            }
+            else {
+                groundNode.active = false;
+                starNode.active = false;
+            }
+            
+        }
+        
     },
 
     gameOver : function () {

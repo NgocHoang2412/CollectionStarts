@@ -9,7 +9,6 @@ cc.Class({
         maxJumpDuration : 0,
         score : 0,
         starCount : 0,
-        body : cc.RigidBody,
         audio: {
             default: null,
             type: cc.AudioClip
@@ -94,8 +93,7 @@ cc.Class({
     },
     
     update (dt) {
-
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa == " + GLOBAL.GameStatus);
+       
         if(GLOBAL.GameStatus == 0) {
             
             if (this.isMovingLeft) {
@@ -120,10 +118,5 @@ cc.Class({
             }
             this.body.linearVelocity = speed;
         }
-        else
-        {
-            console.log("bbbbbbbbbbbbbbbbbbbbbbbbbb");
-        }
-        
     }
 });

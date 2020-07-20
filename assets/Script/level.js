@@ -39,10 +39,7 @@ cc.Class({
                 GLOBAL.Timer = 20;
                 break;
             case 3:
-                GLOBAL.Timer = 10;
-                break;
-        
-            default:
+                GLOBAL.Timer = 15;
                 break;
         }
     },
