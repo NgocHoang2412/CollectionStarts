@@ -8,14 +8,9 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-        // player node for obtaining the jump height of the main character and controlling the movement switch of the main character
         player: {
             default: null,
             type: cc.Node
-        },
-        star: {
-            default: null,
-            type: cc.Prefab
         },
         label: {
             default: null,
@@ -75,6 +70,8 @@ cc.Class({
 
     gameOver : function () {
         this.gameOverNode.active = true;
+        let targetPos = this.player.parent.convertToWorldSpaceAR(this.player.position);
+        this.gameOverNode.position = this.node.parent.convertToNodeSpaceAR(cc.Vec2(targetPos.x - 480,0));
         GLOBAL.GameStatus = -1;
         var seq = cc.sequence(
             cc.delayTime(3),
@@ -84,6 +81,8 @@ cc.Class({
     },
     gameWin : function () {
         this.gameWinNode.active  = true;
+        let targetPos = this.player.parent.convertToWorldSpaceAR(this.player.position);
+        this.gameWinNode.position = this.node.parent.convertToNodeSpaceAR(cc.Vec2(targetPos.x - 480,0));
         GLOBAL.GameStatus = 1;
         var seq = cc.sequence(
             cc.delayTime(3),
@@ -97,7 +96,7 @@ cc.Class({
     // called every frame
     update: function (dt) {
         this.label.string =  " Score : " + this.player.getComponent('player').score;
-        
+       
         if(this.timer > 1){
             this.timer-=dt;
             if(this.player.getComponent('player').starCount == this.starCount){
